@@ -1,0 +1,27 @@
+:root {
+  --primary: #1565c0; /* Deep Blue */
+  --primary-light: #4fc3f7; /* Sky Blue */
+  --accent: #ff7043; /* Coral */
+
+  --bg: #f8fafc;
+  --surface: #ffffff;
+
+  --text: #0f172a;
+  --text-muted: #64748b;
+
+  --border: #e2e8f0;
+}
+
+.dark {
+  --primary: #4fc3f7;
+  --primary-light: #1565c0;
+  --accent: #ff8a65;
+
+  --bg: #0f172a;
+  --surface: #1e293b;
+
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+
+  --border: #334155;
+}
