@@ -68,7 +68,11 @@ __turbopack_context__.s([
 const API_ROUTES = {
     AUTH: {
         LOGIN: "/api/auth/login",
-        REGISTER_USER: "/api/auth/register/user"
+        REGISTER_USER: "/api/auth/register/user",
+        REGISTER_PARTNER: "/api/auth/register/partner"
+    },
+    USERS: {
+        GET_ALL_USERS: "/api/users/users-list"
     }
 };
 }),
@@ -78,6 +82,8 @@ const API_ROUTES = {
 __turbopack_context__.s([
     "loginUser",
     ()=>loginUser,
+    "registerPartner",
+    ()=>registerPartner,
     "registerUser",
     ()=>registerUser
 ]);
@@ -86,6 +92,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$constants$2f$api$2e$routes$2
 ;
 ;
 const registerUser = (payload)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$service$2f$api$2e$client$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"])(__TURBOPACK__imported__module__$5b$project$5d2f$constants$2f$api$2e$routes$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["API_ROUTES"].AUTH.REGISTER_USER, {
+        method: "POST",
+        body: payload
+    });
+const registerPartner = (payload)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$service$2f$api$2e$client$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"])(__TURBOPACK__imported__module__$5b$project$5d2f$constants$2f$api$2e$routes$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["API_ROUTES"].AUTH.REGISTER_PARTNER, {
         method: "POST",
         body: payload
     });
@@ -101,6 +111,8 @@ const loginUser = (payload)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f
 __turbopack_context__.s([
     "useLoginUser",
     ()=>useLoginUser,
+    "useRegisterPartner",
+    ()=>useRegisterPartner,
     "useRegisterUser",
     ()=>useRegisterUser
 ]);
@@ -110,6 +122,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$service$2f$authjs$2f$auth$2e
 ;
 const useRegisterUser = ()=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$service$2f$authjs$2f$auth$2e$services$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["registerUser"]
+    });
+const useRegisterPartner = ()=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$service$2f$authjs$2f$auth$2e$services$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["registerPartner"]
     });
 const useLoginUser = ()=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$service$2f$authjs$2f$auth$2e$services$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["loginUser"]

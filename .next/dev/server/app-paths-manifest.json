@@ -1,3 +1,18 @@
 {
+  "/activity-management/partner/bookings/page": "app/activity-management/partner/bookings/page.js",
+  "/activity-management/partner/packages/add-new-package/page": "app/activity-management/partner/packages/add-new-package/page.js",
+  "/activity-management/partner/packages/page": "app/activity-management/partner/packages/page.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/api/bookings/create-booking/route": "app/api/bookings/create-booking/route.js",
+  "/api/bookings/partner-booking-list/route": "app/api/bookings/partner-booking-list/route.js",
+  "/api/bookings/user-bookings/route": "app/api/bookings/user-bookings/route.js",
+  "/api/packages/package-list-user/route": "app/api/packages/package-list-user/route.js",
+  "/api/packages/package-list/route": "app/api/packages/package-list/route.js",
+  "/bookings/user/[packageId]/page": "app/bookings/user/[packageId]/page.js",
+  "/bookings/user/list/page": "app/bookings/user/list/page.js",
+  "/dashboard/partner/page": "app/dashboard/partner/page.js",
+  "/dashboard/user/page": "app/dashboard/user/page.js",
+  "/login/page": "app/login/page.js",
+  "/packages/user/page": "app/packages/user/page.js",
   "/page": "app/page.js"
 }

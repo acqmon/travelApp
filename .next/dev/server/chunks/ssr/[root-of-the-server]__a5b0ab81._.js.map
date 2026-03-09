@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 22, "column": 0}, "map": {"version":3,"sources":["file:///home/amonteiro/Documents/ExperimentalProject/demotravelsite/app/activity-management/partner/bookings/page.js"],"sourcesContent":["export default function PartnerBookingsPage() {\n  return (\n    <div>\n      <h1>Partner Bookings</h1>\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;kBACC,cAAA,8OAAC;sBAAG;;;;;;;;;;;AAGV","debugId":null}}]
+}

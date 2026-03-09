@@ -1,7 +1,15 @@
+import { SidebarNew } from "@/components";
+import { RoleConstants } from "@/constants/role.constants";
+
 export default function PartnerLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <main className="min-h-screen w-full">{children}</main>;
+  return (
+    <div className="flex min-h-screen">
+      <SidebarNew role={RoleConstants.PARTNER} />
+      <main className="flex-1 p-6">{children}</main>
+    </div>
+  );
 }

@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import { sequelize } from "../../../../../lib/db/sequelize.js";
 import bcrypt from "bcryptjs";
-import { User, Role, Status } from "../../../../../lib/models/index.js";
+import {
+  User,
+  Partner,
+  Role,
+  Status,
+} from "../../../../../lib/models/index.js";
 import { StatusConstants } from "../../../../../constants/api.constants.js";
 import { RoleConstants } from "@/constants/role.constants.js";
 
@@ -10,13 +15,24 @@ export async function POST(req) {
 
   try {
     const body = await req.json();
-    const { name, email, password } = body;
+
+    const {
+      name,
+      email,
+      password,
+      companyName,
+      phone,
+      website,
+      location,
+      address,
+      description,
+    } = body;
 
     // 1️⃣ Validate input
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !companyName) {
       await transaction.rollback();
       return NextResponse.json(
-        { error: "Name, email and password are required" },
+        { error: "Name, email, password and company name are required" },
         { status: 400 },
       );
     }
@@ -45,25 +61,25 @@ export async function POST(req) {
     // 3️⃣ Hash password
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // 4️⃣ Get USER role
-    const userRole = await Role.findOne({
-      where: { name: RoleConstants.USER },
+    // 4️⃣ Get PARTNER role
+    const partnerRole = await Role.findOne({
+      where: { name: RoleConstants.PARTNER },
     });
 
-    if (!userRole) {
+    if (!partnerRole) {
       await transaction.rollback();
       return NextResponse.json(
-        { error: "User role not configured in database" },
+        { error: "Partner role not configured in database" },
         { status: 500 },
       );
     }
 
-    // 5️⃣ Get ACTIVE status
-    const activeStatus = await Status.findOne({
+    // 5️⃣ Get default status (PENDING recommended)
+    const pendingStatus = await Status.findOne({
       where: { name: StatusConstants.ACTIVE },
     });
 
-    if (!activeStatus) {
+    if (!pendingStatus) {
       await transaction.rollback();
       return NextResponse.json(
         { error: "Default status not configured in database" },
@@ -77,33 +93,40 @@ export async function POST(req) {
         name,
         email,
         passwordHash,
-        roleId: userRole.id,
-        statusId: activeStatus.id,
+        roleId: partnerRole.id,
+        statusId: pendingStatus.id,
+      },
+      { transaction },
+    );
+
+    // 7️⃣ Create partner profile
+    const partnerProfile = await Partner.create(
+      {
+        userId: newUser.id,
+        companyName,
+        phone,
+        website,
+        location,
+        address,
+        description,
+        statusId: pendingStatus.id,
       },
       { transaction },
     );
 
     await transaction.commit();
 
-    // 7️⃣ Safe response
+    // 8️⃣ Response
     return NextResponse.json(
       {
-        message: "User registered successfully",
-        user: {
-          id: newUser.id,
-          name: newUser.name,
-          email: newUser.email,
-          role: {
-            id: userRole.id,
-            code: userRole.code,
-            name: userRole.name,
-            isActive: userRole.isActive,
-          },
-          status: {
-            id: activeStatus.id,
-            code: activeStatus.code,
-            name: activeStatus.name,
-            isActive: activeStatus.isActive,
+        message: "Partner registered successfully",
+        partner: {
+          id: partnerProfile.id,
+          companyName: partnerProfile.companyName,
+          user: {
+            id: newUser.id,
+            name: newUser.name,
+            email: newUser.email,
           },
         },
       },
@@ -111,7 +134,8 @@ export async function POST(req) {
     );
   } catch (error) {
     await transaction.rollback();
-    console.error("REGISTER API ERROR:", error);
+
+    console.error("PARTNER REGISTER ERROR:", error);
 
     return NextResponse.json(
       { error: "Internal server error" },
@@ -119,30 +143,3 @@ export async function POST(req) {
     );
   }
 }
-
-// import { NextResponse } from "next/server";
-// import { sequelize } from "../../../../../lib/db/sequelize.js";
-// import bcrypt from "bcryptjs";
-// import { User, Role, Status } from "../../../../../lib/models/index.js";
-// import {
-//   RoleConstants,
-//   StatusConstants,
-// } from "../../../../../constants/api.constants.js";
-
-// export async function POST(req) {
-//   try {
-//     const body = await req.json();
-//     console.log("REGISTER BODY:", body); //only in terminal it will log, not on browser
-
-//     return NextResponse.json({
-//       message: "User registered successfully",
-//     });
-//   } catch (error) {
-//     console.error("REGISTER API ERROR:", error);
-
-//     return NextResponse.json(
-//       { error: "Invalid request or server error" },
-//       { status: 500 },
-//     );
-//   }
-// }

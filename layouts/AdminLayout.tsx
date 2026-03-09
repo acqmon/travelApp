@@ -1,4 +1,5 @@
-import { AdminSidebar } from "@/components";
+import { SidebarNew } from "@/components";
+import { RoleConstants } from "@/constants/role.constants";
 
 export default function AdminLayout({
   children,
@@ -7,7 +8,7 @@ export default function AdminLayout({
 }) {
   return (
     <div className="flex min-h-screen">
-      <AdminSidebar />
+      <SidebarNew role={RoleConstants.ADMIN} />
       <main className="flex-1 p-6">{children}</main>
     </div>
   );

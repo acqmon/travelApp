@@ -243,35 +243,37 @@ const Partner = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$db$2f$seq
     userId: {
         type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].UUID,
         allowNull: false,
-        unique: true
+        field: "user_id"
     },
-    businessName: {
-        type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].STRING(255),
-        allowNull: false
+    companyName: {
+        type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].STRING(200),
+        allowNull: false,
+        field: "company_name"
     },
-    businessEmail: {
-        type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].STRING(255),
+    description: {
+        type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].TEXT,
         allowNull: true
     },
     phone: {
-        type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].STRING(50),
+        type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].STRING(20),
         allowNull: true
     },
-    taxId: {
-        type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].STRING(100),
+    website: {
+        type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].STRING(255),
         allowNull: true
     },
-    registrationNumber: {
-        type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].STRING(100),
+    location: {
+        type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].STRING(150),
         allowNull: true
     },
     address: {
         type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].TEXT,
         allowNull: true
     },
-    isVerified: {
-        type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].BOOLEAN,
-        defaultValue: false
+    statusId: {
+        type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sequelize$2f$lib$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["DataTypes"].UUID,
+        allowNull: false,
+        field: "status_id"
     }
 }, {
     tableName: "partners",
@@ -393,7 +395,9 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 // --------------------------------------------------------------------------
 //  Associations
 // --------------------------------------------------------------------------
-// A User belongs to one Role
+// --------------------------------------------------------------------------
+//  User ↔ Role
+// --------------------------------------------------------------------------
 __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$user$2e$model$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["User"].belongsTo(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$role$2e$model$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Role"], {
     foreignKey: "roleId",
     as: "role"
@@ -402,7 +406,9 @@ __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$role$2e$model$2
     foreignKey: "roleId",
     as: "users"
 });
-// A User belongs to one Status
+// --------------------------------------------------------------------------
+//  User ↔ Status
+// --------------------------------------------------------------------------
 __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$user$2e$model$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["User"].belongsTo(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$status$2e$model$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Status"], {
     foreignKey: "statusId",
     as: "status"
@@ -411,6 +417,9 @@ __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$status$2e$model
     foreignKey: "statusId",
     as: "users"
 });
+// --------------------------------------------------------------------------
+//  User ↔ Partner (1 : 1)
+// --------------------------------------------------------------------------
 __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$user$2e$model$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["User"].hasOne(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$partner$2e$model$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Partner"], {
     foreignKey: "userId",
     as: "partner"
@@ -418,6 +427,17 @@ __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$user$2e$model$2
 __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$partner$2e$model$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Partner"].belongsTo(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$user$2e$model$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["User"], {
     foreignKey: "userId",
     as: "user"
+});
+// --------------------------------------------------------------------------
+//  Partner ↔ Status
+// --------------------------------------------------------------------------
+__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$partner$2e$model$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Partner"].belongsTo(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$status$2e$model$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Status"], {
+    foreignKey: "statusId",
+    as: "status"
+});
+__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$status$2e$model$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Status"].hasMany(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$models$2f$partner$2e$model$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Partner"], {
+    foreignKey: "statusId",
+    as: "partners"
 });
 ;
 __turbopack_async_result__();

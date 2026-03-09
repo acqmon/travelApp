@@ -1,5 +1,6 @@
 import TopNavBar from "./TopNavBar/TopNavBar";
 import Sidebar from "./Sidebar/Sidebar";
-import AdminSidebar from "./AdminSidebar/AdminSidebar";
+import SidebarNew from "./SidebarNew/SidebarNew";
+import DataTable from "./DataTable/DataTable";
 
-export { TopNavBar, Sidebar, AdminSidebar };
+export { TopNavBar, Sidebar, SidebarNew, DataTable };

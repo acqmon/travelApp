@@ -7,6 +7,12 @@ export const registerUser = (payload) =>
     body: payload,
   });
 
+export const registerPartner = (payload) =>
+  apiClient(API_ROUTES.AUTH.REGISTER_PARTNER, {
+    method: "POST",
+    body: payload,
+  });
+
 export const loginUser = (payload) =>
   apiClient(API_ROUTES.AUTH.LOGIN, {
     method: "POST",

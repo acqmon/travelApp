@@ -20,6 +20,14 @@ export const useRegisterUser = () =>
   });
 
 /**
+ * Hook to register a new partner
+ */
+export const useRegisterPartner = () =>
+  useMutation({
+    mutationFn: authService.registerPartner,
+  });
+
+/**
  * Hook to login a user
  */
 export const useLoginUser = () =>

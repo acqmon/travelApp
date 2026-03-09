@@ -5,7 +5,6 @@ import "./globals.css";
 import Providers from "@/providers";
 
 //common components
-import { TopNavBar, AdminSidebar } from "@/components";
 import LayoutSwitcher from "@/layouts/LayoutSwitcher";
 
 const geistSans = Geist({

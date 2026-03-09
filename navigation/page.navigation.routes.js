@@ -7,8 +7,16 @@ export const PAGE_ROUTES = {
   },
   USER_PAGES: {
     DASHBOARD: "/dashboard/user",
+    BOOKINGS_LIST: "/bookings/user/list",
+    BOOKING: "/bookings/user",
+    PROFILE: "/profile/user",
+    PACKAGES: "/packages/user",
   },
   PARTNER_PAGES: {
     DASHBOARD: "/dashboard/partner",
+    PACKAGES: "/activity-management/partner/packages",
+    ADD_NEW_PACKAGE: "/activity-management/partner/packages/add-new-package",
+    BOOKINGS: "/activity-management/partner/bookings",
+    PROFILE: "/profile/partner",
   },
 };
